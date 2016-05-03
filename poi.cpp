@@ -585,12 +585,12 @@ time_t Entry::getDateTime() {
 	time(&rawtime);
 	struct tm *result = localtime(&rawtime);
 
-	result->tm_sec = ((datetime >> 16u) & 0x1F) << 1;
-	result->tm_min = (datetime >> 21u) & 0x3F;
-	result->tm_hour = (datetime >> 27u) & 0x1F;
-	result->tm_mday = datetime & 0x1F;
-	result->tm_mon = (datetime >> 5u) & 0xF;
-	result->tm_year = ((datetime >> 9u) & 0x7F) + 10;
+	result->tm_sec = datetime & 0x1F;
+	result->tm_min = (datetime >> 5) & 0x3F;
+	result->tm_hour = (datetime >> 11) & 0x1F;
+	result->tm_mday = (datetime >> 16) & 0x1F;
+	result->tm_mon = (datetime >> 21) & 0xF;
+	result->tm_year = ((datetime >> 25) & 0x7F) + 10;
 
 	return mktime(result);
 }

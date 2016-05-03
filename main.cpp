@@ -45,7 +45,7 @@ void init_fuse() {
   poi_oper.unlink = poi_unlink;
   poi_oper.rename = poi_rename;
   poi_oper.write = poi_write;
-  // poi_oper.utime = poi_utime;
+  poi_oper.utimens = poi_utimens;
   poi_oper.truncate = poi_truncate;
   poi_oper.chmod = poi_chmod;
   poi_oper.link = poi_link;

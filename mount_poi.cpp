@@ -48,6 +48,9 @@ int poi_getattr(const char* path, struct stat* stbuf) {
 		// waktu pembuatan file
 		stbuf->st_mtime = entry.getDateTime();
 
+		// waktu akses file
+		stbuf->st_atime = entry.getDateTime();
+
 		return 0;
 	}
 }
@@ -387,7 +390,7 @@ int poi_open(const char* path, struct fuse_file_info* fi) {
  * @param  ubuf [description]
  * @return      [description]
  */
-int poi_utime(const char *path, struct utimbuf *ubuf) {
+int poi_utimens(const char *path, const timespec tv[2]) {
 	Entry entry = Entry(0,0).getEntry(path);
 
 	if(entry.isEmpty()) {

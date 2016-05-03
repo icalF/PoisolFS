@@ -127,4 +127,4 @@ int poi_open(const char* path, struct fuse_file_info* fi);
  * @param  ubuf [description]
  * @return      [description]
  */
-int poi_utime(const char *path, struct utimbuf *ubuf);
+int poi_utimens(const char *path, const timespec tv[2]);
